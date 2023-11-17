@@ -17,6 +17,7 @@ public class Producer implements Runnable{
 //                    System.out.println("Cleared production check");
             try {
                 prodSema.acquire();
+//                Thread.sleep(10);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }

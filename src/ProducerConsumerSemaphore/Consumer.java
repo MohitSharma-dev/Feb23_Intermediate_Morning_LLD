@@ -17,6 +17,7 @@ public class Consumer implements Runnable{
         while(true){
             try {
                 consSema.acquire();
+//                Thread.sleep(10);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
