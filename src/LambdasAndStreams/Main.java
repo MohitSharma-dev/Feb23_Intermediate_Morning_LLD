@@ -111,5 +111,30 @@ public class Main {
         }
 
         // read about reduce() operation
+
+        Stream<Integer> s6 = list_x.stream();
+        Integer xyz = s6
+                .filter((elem) -> {
+                    System.out.println("Filtering " + elem);
+                    return elem % 2 == 0;
+                })
+                .reduce(0, (sum , temp1) -> {
+                    return sum + temp1;
+                });
+
+        int sum = 0;
+        for(Integer temp1 : list_x){
+            sum = sum + temp1;
+        }
+
+        Stream<Integer> s7 = list_x.stream();
+        Integer maxx = s7
+                .filter((elem) -> {
+                    System.out.println("Filtering " + elem);
+                    return elem % 2 == 0;
+                })
+                .reduce(Integer.MIN_VALUE, (max_till_now , temp1) -> {
+                    return Math.max(max_till_now , temp1);
+                });
     }
 }
