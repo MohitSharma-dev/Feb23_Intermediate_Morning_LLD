@@ -140,5 +140,17 @@ public class Game {
     }
 }
 
+// Code Models from our class diagram
+// code controllers
+// set up the main in the client
+    // gameController stateless and Game stateful
+// startGame
+    // builder design pattern
+    // multi-valued attributes : addPlayer()
+    // validate() method
+
+// To-do :
+    // complete validate()
+    // try to attempt different methods in gameController
 
 
