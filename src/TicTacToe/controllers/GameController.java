@@ -24,14 +24,14 @@ public class GameController {
         // Game.getBuilder().addPlayer().addPlayer().addwinn
     }
     public void displayBoard(Game game){
-        game.getBoard().printBoard();
+        game.printBoard();
     }
     public void makeMove(Game game){
-
+        game.makeMove();
     }
 
     public GameState checkState(Game game){
-        return null;
+        return game.getGameState();
     }
 
     public Player getWinner(Game game){
