@@ -199,15 +199,37 @@ public class Game {
             gameState = GameState.DRAW;
         }
 
+        System.out.println("Player " + currentMovePlayer.getName() + " moved at " + move.getCell().getRow() + " , " + move.getCell().getCol());
+
     }
 
     public boolean checkWinner(Board board , Move move){
         for(WinningStrategy winningStrategy : winningStrategies){
-            if(winningStrategy.checkWinner(move.getPlayer() , board)) {
+            if(winningStrategy.checkWinner(move , board)) {
                 return true;
             }
         }
         return false;
+    }
+
+    public void undo(){
+        if(moves.isEmpty()){
+            System.out.println("No moves to undo");
+            return;
+        }
+        Move move = moves.get(moves.size() - 1);
+        moves.remove(move);
+        Cell cell = move.getCell();
+
+        cell.setPlayer(null);
+        cell.setCellState(CellState.EMPTY);
+
+        nextPlayerMoveIndex -= 1;
+        nextPlayerMoveIndex = (nextPlayerMoveIndex + players.size()) % players.size();
+
+        for(WinningStrategy winningStrategy : winningStrategies){
+            winningStrategy.handleUndo(board , move);
+        }
     }
 }
 

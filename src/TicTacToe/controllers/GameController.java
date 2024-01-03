@@ -35,11 +35,11 @@ public class GameController {
     }
 
     public Player getWinner(Game game){
-        return null;
+        return game.getWinner();
     }
 
     public void undo(Game game){
-
+        game.undo();
     }
 }
 

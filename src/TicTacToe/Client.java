@@ -10,9 +10,12 @@ import TicTacToe.strategies.WinningStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Client {
+
     public static void main(String[] args) throws InvalidBotCountException {
+        Scanner sc = new Scanner(System.in);
         GameController gameController = new GameController();
         System.out.println("Game is starting");
 
@@ -37,7 +40,21 @@ public class Client {
             gameController.displayBoard(game);
             while(gameController.checkState(game).equals(GameState.IN_PROGRESS)){
                 gameController.makeMove(game);
+                System.out.println("Do anyone wants to undo ? (y/n)");
+                String undoAnswer = sc.next();
+                if(undoAnswer.equals("y")){
+                    gameController.undo(game);
+                }
                 gameController.displayBoard(game);
+            }
+
+            System.out.println("The Game is finished!");
+            GameState gameState = gameController.checkState(game);
+
+            if(gameState.equals(GameState.DRAW)){
+                System.out.println("The Result is DRAW!!!!");
+            } else {
+                System.out.println("The Winner is " + gameController.getWinner(game).getName());
             }
 
         } catch (Exception e){
@@ -45,11 +62,5 @@ public class Client {
 //            System.out.println("Game has stopped working!");
         }
 
-
-//        if(gameController.checkState(game1).equals(GameState.DRAW)){
-//            System.out.println("Game ends in a DRAW!");
-//        } else if (gameController.checkState(game1).equals(GameState.SUCCESS)){
-//            System.out.println("Winner is : " + gameController.getWinner(game1).getName());
-//        }
     }
 }
