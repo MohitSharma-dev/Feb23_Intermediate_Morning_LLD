@@ -9,10 +9,10 @@ import ParkingLot.services.TokenService;
 public class TokenController {
     private TokenService tokenService;
 
-    TokenController(TokenService tokenService){
+    public TokenController(TokenService tokenService){
         this.tokenService = tokenService;
     }
-    IssueTokenResponseDTO issueToken(IssueTokenRequestDTO issueTokenRequestDTO){
+    public IssueTokenResponseDTO issueToken(IssueTokenRequestDTO issueTokenRequestDTO){
         IssueTokenResponseDTO response = new IssueTokenResponseDTO();
         try {
             Token token = tokenService.issueToken(

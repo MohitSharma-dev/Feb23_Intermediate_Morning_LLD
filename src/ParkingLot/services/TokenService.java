@@ -16,7 +16,7 @@ public class TokenService {
     private ParkingLotRepository parkingLotRepository;
     private TokenRepository tokenRepository;
 
-    TokenService(
+    public TokenService(
             GateRepository gateRepository,
             VehicleRepository vehicleRepository,
             ParkingLotRepository parkingLotRepository,
@@ -59,13 +59,13 @@ public class TokenService {
         token.setVehicle(savedVehicle);
         // 2. Assign a spot
         SlotAssignmentStrategyType slotAssignmentStrategyType =  parkingLotRepository
-                                                                    .findParkingLotByGate(gateId)
+                                                                    .findParkingLotByGate(gate)
                                                                     .getSlotAssignmentStrategyType();
         ParkingSlot parkingSlot = SlotAssignmentStrategyFactory.getSlotAssignmentStrategyByType(slotAssignmentStrategyType)
                 .getSlot(gate, vehicleType);
 
         token.setParkingSlot(parkingSlot);
-
+        parkingSlot.setParkingSlotStatus(ParkingSlotStatus.FILLED);
         Token savedToken = tokenRepository.saveToken(token);
         savedToken.setNumber("TICKET - " + savedToken.getId());
         // 3. return token
@@ -76,3 +76,8 @@ public class TokenService {
 // DTO : Client -> Controller
 // Why not DTO's in service ?
 
+
+// 1. Complete vehicleRepo
+// 2. Complete client and make the proper call by first ingesting some data
+// 3. Complete RandomSlot Strategy
+// 4. Give an attempt to generateBill

@@ -3,8 +3,16 @@ package ParkingLot.models;
 public class ParkingSlot extends BaseModel{
     private int slotNumber;
     private VehicleTypes vehicleType;
-    private ParkingLotStatus parkingLotStatus;
+    private ParkingSlotStatus parkingSlotStatus;
     private ParkingFloor parkingFloor;
+
+    public ParkingSlotStatus getParkingSlotStatus() {
+        return parkingSlotStatus;
+    }
+
+    public void setParkingSlotStatus(ParkingSlotStatus parkingSlotStatus) {
+        this.parkingSlotStatus = parkingSlotStatus;
+    }
 
     public int getSlotNumber() {
         return slotNumber;
@@ -20,14 +28,6 @@ public class ParkingSlot extends BaseModel{
 
     public void setVehicleType(VehicleTypes vehicleType) {
         this.vehicleType = vehicleType;
-    }
-
-    public ParkingLotStatus getParkingLotStatus() {
-        return parkingLotStatus;
-    }
-
-    public void setParkingLotStatus(ParkingLotStatus parkingLotStatus) {
-        this.parkingLotStatus = parkingLotStatus;
     }
 
     public ParkingFloor getParkingFloor() {
